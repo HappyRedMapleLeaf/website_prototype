@@ -58,9 +58,13 @@ const HomeContent = () => {
                     Ut bibendum nisi nec odio blandit, id volutpat sapien tempus. Integer ac sodales justo. Integer egestas et sem sed bibendum. Nullam fermentum arcu nec ipsum molestie, pharetra tristique massa porta. Nam eu nisl orci. Proin a ipsum ut eros finibus ultrices. Suspendisse potenti.
                     <br></br><br></br>
                 </p>
-                <HomeButton img={buttonImage1} color="#551111" href="https://www.google.com/" text={"Link 123abc funny"} alt="button1" />
-                <HomeButton img={buttonImage1} color="#115511" href="https://www.youtube.com/@Devolotics/videos" text={"LINKLINKLINKLINK"} alt="button2" />
-                <HomeButton img={buttonImage1} color="#111155" href="https://devolotics.github.io/" text={"buton thre :)"} alt="button3" />
+                <HomeButton img={buttonImage1} color="#551111" href="https://www.google.com/" text={"github placeholder"} alt="button1" />
+                <HomeButton img={buttonImage1} color="#115511" href="https://www.youtube.com/@Devolotics/videos" text={"linkedin placceholder"} alt="button2" />
+                <HomeButton img={buttonImage1} color="#111155" href="https://devolotics.github.io/" text={"projects page placehulder"} alt="button3" />
+                <HomeButton img={buttonImage1} color="#115555" href="https://devolotics.github.io/" text={"credits and source code"} alt="button4" />
+                <p>
+                    credits (3d model, paper texture) and source code and other links
+                </p>
             </div>
         </div>
     )
