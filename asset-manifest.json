@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/website_prototype/static/css/main.ac450bef.css",
-    "main.js": "/website_prototype/static/js/main.efd6e57d.js",
+    "main.css": "/website_prototype/static/css/main.12e3ded6.css",
+    "main.js": "/website_prototype/static/js/main.125ebd05.js",
     "static/js/787.201d070e.chunk.js": "/website_prototype/static/js/787.201d070e.chunk.js",
     "static/media/footer2.png": "/website_prototype/static/media/footer2.056ecb129dc56c2d9755.png",
     "static/media/grid.png": "/website_prototype/static/media/grid.b387f9c5f5fa1f18e869.png",
@@ -9,12 +9,12 @@
     "static/media/footer1.png": "/website_prototype/static/media/footer1.c6a1c66fbcc581ea9605.png",
     "static/media/exclamation_question.svg": "/website_prototype/static/media/exclamation_question.c26f9b0c29119c98f8af375ad9e6d6d1.svg",
     "index.html": "/website_prototype/index.html",
-    "main.ac450bef.css.map": "/website_prototype/static/css/main.ac450bef.css.map",
-    "main.efd6e57d.js.map": "/website_prototype/static/js/main.efd6e57d.js.map",
+    "main.12e3ded6.css.map": "/website_prototype/static/css/main.12e3ded6.css.map",
+    "main.125ebd05.js.map": "/website_prototype/static/js/main.125ebd05.js.map",
     "787.201d070e.chunk.js.map": "/website_prototype/static/js/787.201d070e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ac450bef.css",
-    "static/js/main.efd6e57d.js"
+    "static/css/main.12e3ded6.css",
+    "static/js/main.125ebd05.js"
   ]
 }
