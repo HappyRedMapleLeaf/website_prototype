@@ -6,6 +6,7 @@ import handString from './Hand'
 //https://www.datainfinities.com/68/get-the-mouse-position-coordinates-in-react
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio
 //https://www.youtube.com/watch?v=ih20l3pJoeU
+//https://sketchfab.com/3d-models/hand-low-poly-d6c802a74a174c8c805deb20186d1877
 
 //java has infected me im sorry you have to see this
 //this entire 3d part is made with 'if it works it works' energy
@@ -20,6 +21,18 @@ class Vec {
         } else {
             this.x = a; this.y = b; this.z = c
         }
+    }
+
+    scale(a: number, b: number, c: number) {
+        this.x *= a
+        this.y *= b
+        this.z *= c
+    }
+
+    translate(a: number, b: number, c: number) {
+        this.x += a
+        this.y += b
+        this.z += c
     }
 }
 
@@ -42,11 +55,27 @@ class Triangle {
                              [this.p[1].x, this.p[1].y, this.p[1].z],
                              [this.p[2].x, this.p[2].y, this.p[2].z]], [])
     }
+
+    scale(a: number, b: number, c: number) {
+        this.p[0].scale(a, b, c)
+        this.p[1].scale(a, b, c)
+        this.p[2].scale(a, b, c)
+    }
+
+    translate(a: number, b: number, c: number) {
+        this.p[0].translate(a, b, c)
+        this.p[1].translate(a, b, c)
+        this.p[2].translate(a, b, c)
+    }
+
+    multiply(mat: number[][]) {
+        this.p[0] = matMultiply(mat, this.p[0])
+        this.p[1] = matMultiply(mat, this.p[1])
+        this.p[2] = matMultiply(mat, this.p[2])
+    }
 }
 
 function drawTri(t: Triangle, ctx: CanvasRenderingContext2D) {
-    ctx.strokeStyle = '#0000FF33'
-    ctx.lineWidth = 3
     let a = t.p[0]
     let b = t.p[1]
     let c = t.p[2]
@@ -56,12 +85,9 @@ function drawTri(t: Triangle, ctx: CanvasRenderingContext2D) {
     ctx.lineTo(c.x, c.y)
     ctx.closePath()
     ctx.stroke()
-    ctx.strokeStyle = '#BBBBBB'
-    ctx.lineWidth = 1
-    ctx.stroke()
 }
 
-function MatMultiply(m: number[][], i: Vec): Vec {
+function matMultiply(m: number[][], i: Vec): Vec {
     let o = new Vec([])
     o.x = i.x * m[0][0] + i.y * m[0][1] + i.z * m[0][2] + m[0][3];
     o.y = i.x * m[1][0] + i.y * m[1][1] + i.z * m[1][2] + m[1][3];
@@ -102,20 +128,21 @@ function initMesh(): Triangle[] {
 }
 
 const Canvas = () => {
-    const fov = Math.PI / 3.5
-    const f = 1 / Math.tan(fov / 2)
-    let rotationAxis = "z"
-    const maxAngle = Math.PI / 3
-
+    const canvasRef = useRef<HTMLCanvasElement>(null)
     const meshCube = useMemo(() => initMesh(), [])
 
-    const mouseX = useRef(0)
-    const currentAngle = useRef(0)
+    const fov = Math.PI / 3.5
+    const f = 1 / Math.tan(fov / 2)
+    const maxAngle = Math.PI / 3
+    
+    const mouseX = useRef(-1)
+    const currentAngle = useRef(-maxAngle)
     const lastRun = useRef(0)
     const frameCounter = useRef(0)
     const fpsDraw = useRef(0)
 
-    const canvasRef = useRef<HTMLCanvasElement>(null)
+    let debug = false
+    let rotationAxis = "z"
 
     const draw = useCallback((canvas: HTMLCanvasElement) => {
         let frameDuration = (performance.now() - lastRun.current) / 1000
@@ -127,7 +154,6 @@ const Canvas = () => {
             fpsDraw.current = fps
             frameCounter.current = 0
         }
-
 
         const ctx = canvas.getContext('2d')
         
@@ -142,12 +168,9 @@ const Canvas = () => {
             canvas.height = height * ratio
             ctx.scale(ratio, ratio)
 
-            // LAGGGGG
-            // ctx.shadowBlur = 5;
-            // ctx.shadowColor = '#2222ff';
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-            // ctx.strokeStyle = '#22CCCC'
-            // ctx.lineWidth = 1
+            ctx.strokeStyle = '#22BBBB'
+            ctx.lineWidth = 1
 
             const a = height / width
             const matProj = [[a*f, 0, 0, 0],
@@ -159,10 +182,16 @@ const Canvas = () => {
                           [0, 0, 0, 0],
                           [0, 0, 0, 0],
                           [0, 0, 0, 0]]
-            
-            const targetAngle = (mouseX.current * 2 / width - 1) * maxAngle + Math.PI
+
+            if (mouseX.current === -1) {
+                // page load offset
+                // make it center for mobile but 3/4 for desktop for a wave
+                mouseX.current = width / 2
+            }
+            const targetAngle = (mouseX.current * 2 / width - 1) * maxAngle
 
             if (frameDuration > 1) {
+                // fixes a glitch where the hand spins like f*kn crazy after tabbing out for a while
                 frameDuration = 1
             }
             currentAngle.current = currentAngle.current + (targetAngle - currentAngle.current) * frameDuration * 2
@@ -186,44 +215,29 @@ const Canvas = () => {
             }
 
             for (let i = 0; i < meshCube.length; i++) {
-                let triRotated = new Triangle([], [MatMultiply(matRot, meshCube[i].p[0]),
-                                                   MatMultiply(matRot, meshCube[i].p[1]),
-                                                   MatMultiply(matRot, meshCube[i].p[2])])
+                // baaaare bones 3d render, no culling, no clipping, no z normalization
+                // could still be optimized quite a lot i bet but whatever
+                let tri = meshCube[i].copy()
+                tri.multiply(matRot)
+                tri.translate(0.01, -0.5, 1)
+                tri.multiply(matProj)
+                tri.scale(-1, -1, 1) //+x is left and +y is up for +z to be out of the camera. on the screen, +x is right and +y is down, so flip x and y
+                tri.translate(1, 1, 0)
+                tri.scale(0.5 * width, 0.5 * height, 1)
 
-                let triTranslated = triRotated.copy()
-                triTranslated.p[0].z += 1
-                triTranslated.p[1].z += 1
-                triTranslated.p[2].z += 1
-                triTranslated.p[0].y += 0.5
-                triTranslated.p[1].y += 0.5
-                triTranslated.p[2].y += 0.5
-
-                let triProjected = new Triangle([], [MatMultiply(matProj, triTranslated.p[0]),
-                                                     MatMultiply(matProj, triTranslated.p[1]),
-                                                     MatMultiply(matProj, triTranslated.p[2])])
-             
                 //https://stackoverflow.com/questions/7389069/how-can-i-make-console-log-show-the-current-state-of-an-object
                 //as usual, i hate javascript
-                //console.log(JSON.parse(JSON.stringify(triProjected)))
-
-                triProjected.p[0].x += 1.0; triProjected.p[0].y += 1.0;
-                triProjected.p[1].x += 1.0; triProjected.p[1].y += 1.0;
-                triProjected.p[2].x += 1.0; triProjected.p[2].y += 1.0;
-                triProjected.p[0].x *= 0.5 * width;
-                triProjected.p[0].y *= 0.5 * height;
-                triProjected.p[1].x *= 0.5 * width;
-                triProjected.p[1].y *= 0.5 * height;
-                triProjected.p[2].x *= 0.5 * width;
-                triProjected.p[2].y *= 0.5 * height;
-
-                drawTri(triProjected, ctx)
+                //console.log(JSON.parse(JSON.stringify(tri)))
+                drawTri(tri, ctx)
             }
 
-            // ctx.fillStyle = "#FFFFFF"
-            // ctx.font = "16px Consolas"
-            // ctx.fillText("framerate: " + fpsDraw.current, 0, 16)
+            if (debug) {
+                ctx.fillStyle = "#FFFFFF"
+                ctx.font = "16px Consolas"
+                ctx.fillText("framerate: " + fpsDraw.current, 0, 16)
+            }
         }
-    }, [mouseX, meshCube, f, maxAngle, rotationAxis])
+    }, [mouseX, meshCube, f, maxAngle, rotationAxis, debug])
 
     useEffect(() => {
         if (canvasRef.current) {    // lazy to stick everything under a null check but mehhh...
