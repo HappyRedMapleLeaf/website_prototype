@@ -1,5 +1,4 @@
 import { useRef, useEffect, useCallback, useMemo } from 'react'
-import handString from './Hand'
 
 //https://stackoverflow.com/questions/60424853/html-canvas-with-react-hooks-and-typescript
 //https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
@@ -102,11 +101,11 @@ function matMultiply(m: number[][], i: Vec): Vec {
     return o
 }
 
-function initMesh(): Triangle[] {
+function initMesh(object: string): Triangle[] {
     let meshCube: Triangle[] = []
 
     //https://stackoverflow.com/questions/21711768/split-string-in-javascript-and-detect-line-break
-    let lines = handString.split(/\r?\n|\r|\n/g)
+    let lines = object.split(/\r?\n|\r|\n/g)
     
     let vertices: number[][] = []
 
@@ -127,11 +126,19 @@ function initMesh(): Triangle[] {
     return meshCube
 }
 
-const Canvas = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null)
-    const meshCube = useMemo(() => initMesh(), [])
+type CanvasProps = {
+    rotationAxis: string,
+    object: string
+    debug: boolean,
+    fov: number,
+    yTranslate: number,
+    zTranslate: number
+}
 
-    const fov = Math.PI / 3.5
+const Canvas = ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: CanvasProps) => {
+    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const meshCube = useMemo(() => initMesh(object), [object])
+
     const f = 1 / Math.tan(fov / 2)
     const maxAngle = Math.PI / 3
     
@@ -141,10 +148,8 @@ const Canvas = () => {
     const frameCounter = useRef(0)
     const fpsDraw = useRef(0)
 
-    let debug = false
-    let rotationAxis = "z"
-
     const draw = useCallback((canvas: HTMLCanvasElement) => {
+
         let frameDuration = (performance.now() - lastRun.current) / 1000
         let fps = Math.round((1 / frameDuration) * 10 ** 2) / 10 ** 2
         lastRun.current = performance.now()
@@ -219,7 +224,7 @@ const Canvas = () => {
                 // could still be optimized quite a lot i bet but whatever
                 let tri = meshCube[i].copy()
                 tri.multiply(matRot)
-                tri.translate(0.01, -0.5, 1)
+                tri.translate(0.01, yTranslate, zTranslate)
                 tri.multiply(matProj)
                 tri.scale(-1, -1, 1) //+x is left and +y is up for +z to be out of the camera. on the screen, +x is right and +y is down, so flip x and y
                 tri.translate(1, 1, 0)
@@ -232,6 +237,7 @@ const Canvas = () => {
             }
 
             if (debug) {
+                console.log("spam")
                 ctx.fillStyle = "#FFFFFF"
                 ctx.font = "16px Consolas"
                 ctx.fillText("framerate: " + fpsDraw.current, 0, 16)

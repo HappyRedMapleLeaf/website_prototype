@@ -4,22 +4,55 @@ import buttonImage1 from "./hrmlnew.png"
 import interrobang from "./exclamation_question.svg"
 import FooterDefault from "./footer1.png"
 import FooterHover from "./footer2.png"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Canvas from './Canvas'
 import { useInView, useSpring, animated, useTrail } from '@react-spring/web'
+import { Routes, Route, NavLink } from 'react-router-dom';
+import handString from "./Hand"
+import robotString from "./Robot"
 
 //https://www.react-spring.dev/docs/utilities/use-in-view#reference
 //https://blog.openreplay.com/creating-animations-with-react-sprint/
+//https://codesandbox.io/s/react-spring-page-transition-forked-67q9pz?file=/src/components/Page.js:68-136
+
+const App = () => {
+
+    return (
+        <>
+            {/* <ScrollToTop /> */}
+            <Routes>
+                <Route path='/projects' element={<Projects />}></Route>
+                <Route path='/' element={<Home />}></Route>
+            </Routes>
+            <Footer />
+            <ScrollButton />
+        </>
+    )
+}
 
 const Home = () => {
     return (
     <>
         <div className="Head">
-            <Canvas />
+            <Canvas rotationAxis="z" object={handString} debug={false} fov={Math.PI / 3.5} yTranslate={-0.5} zTranslate={1}/>
             <HomeHead />
         </div>
         <Body />
     </>
+    )
+}
+
+const Projects = () => {
+    return (
+        <>
+            <div className="Head">
+                <Canvas rotationAxis="y" object={robotString} debug={true} fov={Math.PI / 4} yTranslate={-0.45} zTranslate={2}/>
+                <HomeHead />
+            </div>
+            <div className="Body">
+                <ProjectsContent />
+            </div>
+        </>
     )
 }
 
@@ -29,7 +62,7 @@ const HomeHead = () => {
     const styles = useSpring({
         opacity: isInView ? 1 : 0,
         config: {
-            tension: 40,
+            mass: 50,
             clamp: true,
         },
     })
@@ -52,7 +85,24 @@ const Body = () => {
     return (
         <div className="Body">
             <HomeContent />
-            <HomeFooter />
+        </div>
+    )
+}
+
+const ProjectsContent = () => {
+    return (
+        <div className="OuterContent">
+            <div className="InnerContent">
+                {/* // this div is necessary for useInView to work */}
+                <div style={{height: '1px'}}></div>
+                <FadeParagraph>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio pulvinar, venenatis orci in, suscipit elit. Phasellus quis finibus ante. Duis nunc lectus, pulvinar quis facilisis vel, maximus eget nibh. Mauris vulputate dolor sit amet nulla blandit, quis pulvinar nunc eleifend. Suspendisse vel bibendum lectus, a fringilla dolor. Suspendisse quam eros, convallis quis pharetra a, commodo non leo. Etiam viverra justo sit amet felis facilisis semper. Proin hendrerit cursus rutrum. Nulla molestie commodo odio in interdum. Vestibulum eu erat eu nibh ullamcorper sagittis. Vivamus pretium leo ac ante vehicula, in hendrerit lorem efficitur. Vivamus pulvinar aliquam tellus, posuere ullamcorper lacus pretium nec. Vestibulum rutrum in felis ac dictum. Mauris ut metus commodo mi vehicula lacinia eu ac odio.
+                </FadeParagraph>
+                <ButtonAnimation>
+                    <HomeButton img={buttonImage1} color="#300040" href={`/`} text={"home"} alt="button4" />
+                </ButtonAnimation>
+                {/* credits (3d model, paper texture) and source code and other links */}
+            </div>
         </div>
     )
 }
@@ -106,7 +156,7 @@ const HomeContent = () => {
                 <ButtonAnimation>
                     <HomeButton img={buttonImage1} color="#300070" href="https://www.google.com/" text={"github placeholder"} alt="button1" />
                     <HomeButton img={buttonImage1} color="#300060" href="https://www.youtube.com/@Devolotics/videos" text={"linkedin placceholder"} alt="button2" />
-                    <HomeButton img={buttonImage1} color="#300050" href="https://devolotics.github.io/" text={"projects page placehulder"} alt="button3" />
+                    <HomeButton img={buttonImage1} color="#300050" href={`/projects`} text={"projects page placehulder"} alt="button3" />
                     <HomeButton img={buttonImage1} color="#300040" href="https://devolotics.github.io/" text={"credits and source code"} alt="button4" />
                 </ButtonAnimation>
                 {/* credits (3d model, paper texture) and source code and other links */}
@@ -115,7 +165,7 @@ const HomeContent = () => {
     )
 }
 
-const HomeFooter = () => {
+const Footer = () => {
     const [hovering, setHovering] = useState(false);
 
     function handleMouseEnter(): void {
@@ -127,7 +177,6 @@ const HomeFooter = () => {
     };
 
     const [ref, isInView] = useInView({
-        once: true,
         rootMargin: "10%",
     })
 
@@ -192,16 +241,81 @@ type HomeButtonProps = {
 }
 
 const HomeButton = ({img, color, href, text, alt}: HomeButtonProps) => {
+    function scroll() {
+        window.scrollTo(0, 0)
+    }
+
     return (
-        <a href={href} className="ButtonLink">
+        <NavLink to={href} className="ButtonLink" onClick={scroll}>
             <div className="HomeButton" style={{backgroundColor: color, whiteSpace: 'pre-wrap'}}>
                 <img className="HomeButtonImage" src={img} alt={alt} height="50px"/>
                 <div className="HomeButtonText">
                     {text}
                 </div>
             </div>
-        </a>
+        </NavLink>
     );
 }
 
-export default Home
+const ScrollButton = () => {
+    const [visible, setVisible] = useState(false)
+
+    function onClick() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+
+    const [springs, api] = useSpring(() => ({
+        from: { opacity: 0 },
+        config: { mass: 2 }
+    }))
+
+    useEffect(() => {
+        function handleScroll() {
+            if (window.scrollY > window.innerHeight * 3 / 4) {
+                if (!visible) {
+                    setVisible(true)
+                    api.start({
+                        from: {
+                            opacity: 0,
+                        },
+                        to: {
+                            opacity: 1,
+                        },
+                    })
+                }
+            } else {
+                if (visible) {
+                    setVisible(false)
+                    api.start({
+                        from: {
+                            opacity: 1,
+                        },
+                        to: {
+                            opacity: 0,
+                        },
+                    })
+                }
+            }
+            console.log(visible, window.scrollY > window.innerHeight * 3 / 4)
+        }
+
+        window.addEventListener("scroll", handleScroll)
+        window.addEventListener("resize", handleScroll)
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+            window.removeEventListener("resize", handleScroll)
+        }
+    }, [visible, api])
+
+    return (
+        <animated.button className="ScrollButton" onClick={visible ? onClick : () => {}} style={{...springs}}>
+            <img src={downArrow} width={"40px"} height={"40px"} alt="Scroll to top" />
+        </animated.button>
+    )
+}
+
+export default App
