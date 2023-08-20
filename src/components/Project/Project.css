@@ -1,0 +1,74 @@
+.OuterContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.Left {
+    width: 80px;
+}
+
+.Left .Middle {
+    padding-bottom: 75%;
+}
+
+.Right {
+    margin-left: 10px;
+    width: calc(100% - 90px);
+}
+
+.Top {
+    height: 40px;
+    margin-top: -41px;
+}
+
+.Middle {
+    height: 200px;
+}
+
+.Bottom {
+    height: 40px;
+}
+
+.Right .Middle {
+    background-color: #FF3333;
+}
+
+.Left .Top {
+    background-image: url('../../images/timelineTop.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center top;
+}
+
+.Left .Middle {
+    background-image: url('../../images/timeline.png');
+    background-repeat: repeat-y;
+    background-size: 40px 100%;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Left .Bottom {
+    background-image: url('../../images/timelineBottom.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center bottom;
+}
+
+.Left img {
+    position: absolute;
+    z-index: 0;
+}
+
+.Left p {
+    margin-top: -22px;
+    text-align: center;
+    z-index: 1;
+    font-size: 16pt;
+}

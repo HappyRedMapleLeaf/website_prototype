@@ -1,0 +1,13 @@
+.InnerContent p {
+    margin: 0;
+    padding-top: 20px;
+    font-size: 16pt;
+    color: #DDD;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.InnerContent {
+    margin: auto;
+    width: 90%;
+    max-width: 800px;
+}

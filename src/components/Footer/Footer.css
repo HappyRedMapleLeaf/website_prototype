@@ -1,0 +1,14 @@
+.FooterImageContainer {
+    width: 42vh;        /*Maintain ratio of image*/
+    margin: 0 auto 0 auto;
+}
+
+.FooterImage2 {
+    height: 25vh;       /*Maintain ratio of image*/
+}
+
+.Footer {
+    height: 25vh;
+    padding-top: 35vh;   /*Suspenseful scroll down!*/
+    overflow: clip;
+}

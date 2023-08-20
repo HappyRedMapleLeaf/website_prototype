@@ -1,11 +1,6 @@
-import { useRef, useEffect, useCallback, useMemo } from 'react'
-
-//https://stackoverflow.com/questions/60424853/html-canvas-with-react-hooks-and-typescript
-//https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
-//https://www.datainfinities.com/68/get-the-mouse-position-coordinates-in-react
-//https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio
-//https://www.youtube.com/watch?v=ih20l3pJoeU
-//https://sketchfab.com/3d-models/hand-low-poly-d6c802a74a174c8c805deb20186d1877
+import { useRef, useEffect, useCallback, useMemo, useState } from 'react'
+import "./Header.css"
+import { CanvasProps } from '../../types'
 
 //java has infected me im sorry you have to see this
 //this entire 3d part is made with 'if it works it works' energy
@@ -126,16 +121,9 @@ function initMesh(object: string): Triangle[] {
     return meshCube
 }
 
-type CanvasProps = {
-    rotationAxis: string,
-    object: string
-    debug: boolean,
-    fov: number,
-    yTranslate: number,
-    zTranslate: number
-}
+export default function Canvas ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: CanvasProps) {
+    const [rendering, setRendering] = useState(true)
 
-const Canvas = ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: CanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const meshCube = useMemo(() => initMesh(object), [object])
 
@@ -149,17 +137,6 @@ const Canvas = ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: Canv
     const fpsDraw = useRef(0)
 
     const draw = useCallback((canvas: HTMLCanvasElement) => {
-
-        let frameDuration = (performance.now() - lastRun.current) / 1000
-        let fps = Math.round((1 / frameDuration) * 10 ** 2) / 10 ** 2
-        lastRun.current = performance.now()
-        
-        frameCounter.current += 1
-        if (frameCounter.current >= 5) {
-            fpsDraw.current = fps
-            frameCounter.current = 0
-        }
-
         const ctx = canvas.getContext('2d')
         
         if (ctx) {
@@ -174,6 +151,19 @@ const Canvas = ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: Canv
             ctx.scale(ratio, ratio)
 
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+
+            if (!rendering) return
+
+            let frameDuration = (performance.now() - lastRun.current) / 1000
+            let fps = Math.round((1 / frameDuration) * 10 ** 2) / 10 ** 2
+            lastRun.current = performance.now()
+            
+            frameCounter.current += 1
+            if (frameCounter.current >= 5) {
+                fpsDraw.current = fps
+                frameCounter.current = 0
+            }
+
             ctx.strokeStyle = '#22BBBB'
             ctx.lineWidth = 1
 
@@ -199,7 +189,7 @@ const Canvas = ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: Canv
                 // fixes a glitch where the hand spins like f*kn crazy after tabbing out for a while
                 frameDuration = 1
             }
-            currentAngle.current = currentAngle.current + (targetAngle - currentAngle.current) * frameDuration * 2
+            currentAngle.current = currentAngle.current + (targetAngle - currentAngle.current) * frameDuration * 3
 
             if (rotationAxis === "z") {
                 //rotate about z (wave)
@@ -243,14 +233,14 @@ const Canvas = ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: Canv
                 ctx.fillText("framerate: " + fpsDraw.current, 0, 16)
             }
         }
-    }, [mouseX, meshCube, f, maxAngle, rotationAxis, debug])
+    }, [mouseX, meshCube, f, maxAngle, rotationAxis, debug, yTranslate, zTranslate, rendering])
 
     useEffect(() => {
-        if (canvasRef.current) {    // lazy to stick everything under a null check but mehhh...
-                                    // if canvasRef was null there'd be bigger issues
-                                    // to worry about than the code not running
+        const canvas = canvasRef.current
 
-            const canvas = canvasRef.current
+        if (canvas) {    // lazy to stick everything under a null check but mehhh...
+                         // if canvasRef was null there'd be bigger issues
+                         // to worry about than the code not running
 
             let animationFrameId: number
 
@@ -280,8 +270,7 @@ const Canvas = ({rotationAxis, object, debug, fov, yTranslate, zTranslate}: Canv
         //while just having a canvas that is 100vw x 100vh will keep the width of the page with the browser zooms. 
         <div className='CanvasContainer'>
             <canvas ref={canvasRef} className='Canvas' />
+            <button onClick={() => {setRendering(!rendering)}}><code>Toggle Animation</code></button>
         </div>
     )
-};
-
-export default Canvas;
+}
