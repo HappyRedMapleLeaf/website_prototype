@@ -1,21 +1,18 @@
 {
   "files": {
-    "main.css": "/website_prototype/static/css/main.2d05c7dd.css",
-    "main.js": "/website_prototype/static/js/main.5022050d.js",
-    "static/js/787.201d070e.chunk.js": "/website_prototype/static/js/787.201d070e.chunk.js",
-    "static/media/footer2.png": "/website_prototype/static/media/footer2.056ecb129dc56c2d9755.png",
+    "main.css": "/website_prototype/static/css/main.9ba37274.css",
+    "main.js": "/website_prototype/static/js/main.c40c847c.js",
     "static/media/grid.png": "/website_prototype/static/media/grid.b387f9c5f5fa1f18e869.png",
     "static/media/hrmlnew.png": "/website_prototype/static/media/hrmlnew.173d750de2a62ec9d177.png",
     "static/media/footer1.png": "/website_prototype/static/media/footer1.c6a1c66fbcc581ea9605.png",
-    "static/media/downArrow.svg": "/website_prototype/static/media/downArrow.bcb34af8c449f9c4f86c07f25820263b.svg",
-    "static/media/exclamation_question.svg": "/website_prototype/static/media/exclamation_question.c26f9b0c29119c98f8af375ad9e6d6d1.svg",
+    "static/media/downArrow.svg": "/website_prototype/static/media/downArrow.aeb274dab933c641303c8d39283069af.svg",
     "index.html": "/website_prototype/index.html",
-    "main.2d05c7dd.css.map": "/website_prototype/static/css/main.2d05c7dd.css.map",
-    "main.5022050d.js.map": "/website_prototype/static/js/main.5022050d.js.map",
-    "787.201d070e.chunk.js.map": "/website_prototype/static/js/787.201d070e.chunk.js.map"
+    "static/media/timelineCircle.svg": "/website_prototype/static/media/timelineCircle.ff05b0993304a8211488bd115900f6b1.svg",
+    "main.9ba37274.css.map": "/website_prototype/static/css/main.9ba37274.css.map",
+    "main.c40c847c.js.map": "/website_prototype/static/js/main.c40c847c.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d05c7dd.css",
-    "static/js/main.5022050d.js"
+    "static/css/main.9ba37274.css",
+    "static/js/main.c40c847c.js"
   ]
 }
