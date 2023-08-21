@@ -2,6 +2,8 @@ Code Credits:
 https://www.youtube.com/watch?v=ih20l3pJoeU
 https://codepen.io/Chen0682/pen/Rveoom
 https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition
+https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
+
 
 Other Credits:
 https://sketchfab.com/3d-models/hand-low-poly-d6c802a74a174c8c805deb20186d1877

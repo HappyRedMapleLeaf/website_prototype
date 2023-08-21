@@ -4,6 +4,7 @@ import { useInView, useSpring, animated } from '@react-spring/web'
 import timelineCircle from "../../images/timelineCircle.svg"
 import { useState, useEffect, useRef } from "react"
 import HoverGlow from "../HoverGlow/HoverGlow"
+import { detectMobile } from "../../DetectMobile"
 
 export default function Project({image, title, children, month, year}: ProjectProp) {
 
@@ -17,16 +18,17 @@ export default function Project({image, title, children, month, year}: ProjectPr
         },
     })
 
-    const [refLeft, isInViewLeft] = useInView({once: true})
-    const [refRight, isInViewRight] = useInView({once: false})
+    const [refContainer, isInViewContainer] = useInView()
     const [height, setHeight] = useState(200)
 
     const refContent = useRef<HTMLDivElement>(null)
     const refText = useRef<HTMLDivElement>(null)
     
+    // these animations not used on mobile, its super laggy when a lot are
+    // running at the same time
     const leftAnim = useSpring({
-        x: isInViewLeft ? "0%" : "-250%",
-        opacity: isInViewLeft ? 1 : 0,
+        x: isInViewContainer ? "0%" : "-250%",
+        opacity: isInViewContainer ? 1 : 0,
         config: {
             clamp: true,
             mass: 0.2,
@@ -35,8 +37,8 @@ export default function Project({image, title, children, month, year}: ProjectPr
     })
 
     const rightAnim = useSpring({
-        x: isInViewRight ? "0%" : "100%",
-        opacity: isInViewRight ? 1 : 0,
+        x: isInViewContainer ? "0%" : "100%",
+        opacity: isInViewContainer ? 1 : 0,
         config: {
             tension: 60,
             clamp: true,
@@ -65,8 +67,8 @@ export default function Project({image, title, children, month, year}: ProjectPr
 
     return (
     <>
-        <div className="OuterContainer">
-            <animated.div className="Left" style={leftAnim} ref={refLeft}>
+        <div className="OuterContainer" ref={refContainer}>
+            <animated.div className="Left" style={detectMobile() ? {} : leftAnim}>
                 <div className="Top" />
                 <div className="Middle" style={{height: height + "px"}}>
                     <p>
@@ -74,19 +76,19 @@ export default function Project({image, title, children, month, year}: ProjectPr
                         <br />
                         {year}
                     </p>
-                    <img src={timelineCircle} alt="" height="80px" />
+                    <img src={timelineCircle} alt="" />
                 </div>
                 <div className="Bottom" />
             </animated.div>
 
-            <animated.div className="Right" style={rightAnim} ref={refRight}>
+            <animated.div className="Right" style={detectMobile() ? {} : rightAnim}>
                 <div className="Top" />
                 <HoverGlow>
                     <div className="Middle" style={{height: height + "px"}} ref={refContent}>
                         <animated.div className="CoverPanel" onClick={() => {setIsCoverPanelOpen(true)}} style={coverPanelAnim}>
                             <div className="CoverText">
                                 <h1>{title}</h1>
-                                <p>Click to show more</p>
+                                <p>{detectMobile() ? "Tap" : "Click"} to show more</p>
                             </div>  
                             <img src={image} alt="" />
                         </animated.div>

@@ -8,21 +8,23 @@
 }
 
 .Left {
-    width: 80px;
+    width: min(10%, 80px);
+    position: relative;
 }
 
 .Right {
     margin-left: 10px;
-    width: calc(100% - 90px);
+    width: calc(100% - min(10%, 80px) - 10px);
 }
 
 .Top {
-    height: 40px;
-    margin-top: -41px;
+    height: min(4.5vw, 40px);
+    margin-top: calc(-1.02 * min(4.5vw, 40px));
 }
 
 .Bottom {
-    height: 40px;
+    height: min(4.5vw, 40px);
+    margin-top: -1%;
 }
 
 .Right .Middle {
@@ -39,7 +41,7 @@
 .Left .Middle {
     background-image: url('../../images/timeline.png');
     background-repeat: repeat-y;
-    background-size: 40px 100%;
+    background-size: 50% 100%;
     background-position: center;
     display: flex;
     align-items: center;
@@ -55,13 +57,14 @@
 
 .Left img {
     position: absolute;
+    width: 100%;
 }
 
 .Left p {
     z-index: 1;
     margin-top: -22px;
     text-align: center;
-    font-size: 16pt;
+    font-size: min(2.5vw, 16pt);
 }
 
 .Right .Middle {
@@ -97,7 +100,7 @@
     color: white;
     margin: 0;
     padding: 0;
-    font-size: 100px;
+    font-size: min(15.3vw, 136px);
     line-height: normal;
 }
 
@@ -105,9 +108,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 12pt;
-    padding: 10px;
-    margin: 10px;
+    font-size: min(3.3vw, 24px);
+    padding: min(1.4vw, 10px);
+    margin: min(1.4vw, 10px);
     background-color: #000000AA;
     color: #EEE;
     border: none;
@@ -130,6 +133,13 @@
 }
 
 .Content p {
+    margin: 0;
+    padding: 0;
+    font-size: min(3.3vw, 24px);
+}
+
+.CoverText p {
+    font-size: 16pt;
     margin: 0;
     padding: 0;
 }

@@ -12,6 +12,8 @@ function ProjectsContent() {
     return (
         <Body>
             <FadeParagraph>
+                (Rendered above: Team Devolotics' 2023 robot)
+                <br /><br />
                 tese are some of my projects
                 <br /><br />
             </FadeParagraph>

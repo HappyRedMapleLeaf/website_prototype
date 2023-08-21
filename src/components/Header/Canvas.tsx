@@ -137,6 +137,9 @@ export default function Canvas ({rotationAxis, object, debug, fov, yTranslate, z
     const fpsDraw = useRef(0)
 
     const draw = useCallback((canvas: HTMLCanvasElement) => {
+        // prevents drawing when out of view
+        if (canvas.getBoundingClientRect().bottom < 0) return
+
         const ctx = canvas.getContext('2d')
         
         if (ctx) {
@@ -185,10 +188,11 @@ export default function Canvas ({rotationAxis, object, debug, fov, yTranslate, z
             }
             const targetAngle = (mouseX.current * 2 / width - 1) * maxAngle
 
-            if (frameDuration > 1) {
-                // fixes a glitch where the hand spins like f*kn crazy after tabbing out for a while
-                frameDuration = 1
+            if (frameDuration > 0.04) {
+                // fixes (???) a glitch where the hand spins like f*kn crazy after tabbing out for a while
+                frameDuration = 0.04
             }
+            
             currentAngle.current = currentAngle.current + (targetAngle - currentAngle.current) * frameDuration * 3
 
             if (rotationAxis === "z") {

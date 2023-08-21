@@ -51,13 +51,16 @@
     background-color: #00000077;
 }
 
+.TitleBanner {
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
 .TitleContainer h1 {
     font-family: "Lucida Console", Monaco, monospace;
     font-size: min(15vh, 15vw);
-    margin-top: calc(42vh - 70px);
-    margin-bottom: calc(40vh - 70px);
-    padding-top: 20px;
-    padding-bottom: 5px;
+    margin: 0;
+    padding: 0;
 }
 
 .Head p {

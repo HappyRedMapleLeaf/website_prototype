@@ -7,7 +7,7 @@ import { useInView, useSpring, animated } from '@react-spring/web'
 export default function Footer() {
 
     const [ref, isInView] = useInView({
-        rootMargin: "5%",
+        rootMargin: "-50%",
     })
     
     const styles2 = useSpring({
@@ -19,8 +19,8 @@ export default function Footer() {
     })
 
     return (
-        <div className="Footer">
-            <animated.div className="FooterImageContainer" style={styles2} ref={ref} >
+        <div className="Footer" ref={ref}>
+            <animated.div className="FooterImageContainer" style={styles2} >
                 <img className="FooterImage2" src={FooterDefault} alt="Hey!" style={{display: "block"}} />
             </animated.div>
         </div>
