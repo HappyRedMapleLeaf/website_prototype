@@ -10,14 +10,19 @@
 }
 
 .CanvasContainer button {
+    font-size: 12pt;
     position: absolute;
     top: 0;
     right: 0;
     margin: 10px;
     padding: 10px;
-    background-color: #00000088;
+    background-color: #00000066;
     color: #EEE;
     border: none;
+}
+
+.CanvasContainer button:hover {
+    background-color: #000000CC;
 }
 
 .HeadContainer {

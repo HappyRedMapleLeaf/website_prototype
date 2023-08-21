@@ -11,10 +11,6 @@
     width: 80px;
 }
 
-.Left .Middle {
-    padding-bottom: 75%;
-}
-
 .Right {
     margin-left: 10px;
     width: calc(100% - 90px);
@@ -25,16 +21,12 @@
     margin-top: -41px;
 }
 
-.Middle {
-    height: 200px;
-}
-
 .Bottom {
     height: 40px;
 }
 
 .Right .Middle {
-    background-color: #FF3333;
+    background-color: #ffffff25;
 }
 
 .Left .Top {
@@ -63,12 +55,81 @@
 
 .Left img {
     position: absolute;
-    z-index: 0;
 }
 
 .Left p {
+    z-index: 1;
     margin-top: -22px;
     text-align: center;
-    z-index: 1;
     font-size: 16pt;
+}
+
+.Right .Middle {
+    position: relative;
+    overflow: hidden;
+}
+
+.CoverPanel {
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    z-index: 6;
+}
+
+.CoverPanel img {
+    width: 100%;
+    z-index: 8;
+}
+
+.CoverPanel .CoverText {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.CoverPanel h1 {
+    color: white;
+    margin: 0;
+    padding: 0;
+    font-size: 100px;
+    line-height: normal;
+}
+
+.OuterContainer button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12pt;
+    padding: 10px;
+    margin: 10px;
+    background-color: #000000AA;
+    color: #EEE;
+    border: none;
+    z-index: 4;
+}
+
+.OuterContainer button:hover {
+    background-color: #000000;
+}
+
+.Content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    overflow-y: auto;
+    z-index: 2;
+    padding: 15px;
+}
+
+.Content p {
+    margin: 0;
+    padding: 0;
 }

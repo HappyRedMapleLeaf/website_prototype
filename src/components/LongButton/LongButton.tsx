@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
 import "./LongButton.css"
+import HoverGlow from "../HoverGlow/HoverGlow"
 
 type LongButtonProps = {
     img: string,
@@ -15,13 +16,15 @@ export default function LongButton({img, color, href, text, alt}: LongButtonProp
     }
 
     return (
-        <NavLink to={href} className="LongButtonLink" onClick={scroll}>
-            <div className="LongButton" style={{backgroundColor: color, whiteSpace: 'pre-wrap'}}>
-                <img className="LongButtonImage" src={img} alt={alt} height="50px"/>
-                <div className="LongButtonText">
-                    {text}
+        <HoverGlow>
+            <NavLink to={href} className="LongButtonLink" onClick={scroll}>
+                <div className="LongButton" style={{backgroundColor: color, whiteSpace: 'pre-wrap'}}>
+                    <img className="LongButtonImage" src={img} alt={alt} height="50px"/>
+                    <div className="LongButtonText">
+                        {text}
+                    </div>
                 </div>
-            </div>
-        </NavLink>
+            </NavLink>
+        </HoverGlow>
     );
 }

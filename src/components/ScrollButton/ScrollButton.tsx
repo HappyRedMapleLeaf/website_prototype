@@ -45,7 +45,6 @@ export default function ScrollButton() {
                     })
                 }
             }
-            console.log(visible, window.scrollY > window.innerHeight * 3 / 4)
         }
 
         window.addEventListener("scroll", handleScroll)
