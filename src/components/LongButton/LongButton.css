@@ -15,7 +15,7 @@
     width: 100%;
     height: 100%;
     background-color: #99ffffaa;
-    transform: translate(-100%, 0);
+    transform: translate(-105%, 0);
     transition: ease-out 1s;
 }
 
@@ -26,6 +26,7 @@
 .LongButtonImage {
     position: relative;  /*stay in front of animation*/
     display: block;      /*Get rid of gap on bottom of image*/
+    transform: scale(0.8)
 }
 
 .LongButton:hover .LongButtonText {
@@ -35,7 +36,7 @@
 .LongButtonText {
     font-family: "Lucida Console", Monaco, monospace;
     padding-top: 12px;
-    font-size: 26px;
+    font-size: 16pt;
     overflow-wrap: break-word;
     min-width: 1%; /*css is black magic https://stackoverflow.com/questions/36150458/flex-item-overflows-container-due-to-long-word-even-after-using-word-wrap*/
     position: relative;

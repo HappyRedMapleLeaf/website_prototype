@@ -6,11 +6,10 @@ type LongButtonProps = {
     img: string,
     color: string,
     href: string,
-    text: string,
-    alt: string
+    text: string
 }
 
-export default function LongButton({img, color, href, text, alt}: LongButtonProps) {
+export default function LongButton({img, color, href, text}: LongButtonProps) {
     function scroll() {
         //window.scrollTo(0, 0)
     }
@@ -19,7 +18,7 @@ export default function LongButton({img, color, href, text, alt}: LongButtonProp
         <HoverGlow>
             <NavLink to={href} className="LongButtonLink" onClick={scroll}>
                 <div className="LongButton" style={{backgroundColor: color, whiteSpace: 'pre-wrap'}}>
-                    <img className="LongButtonImage" src={img} alt={alt} height="50px"/>
+                    <img className="LongButtonImage" src={img} alt={text} height="44px"/>
                     <div className="LongButtonText">
                         {text}
                     </div>

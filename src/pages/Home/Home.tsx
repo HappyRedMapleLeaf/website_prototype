@@ -3,31 +3,86 @@ import handString from "../../resources/Hand"
 import Header from '../../components/Header/Header'
 import Body from '../../components/Body/Body'
 import LongButton from '../../components/LongButton/LongButton'
-import FadeParagraph from '../../components/FadeParagraph'
 import ChainAnimation from '../../components/ChainAnimation'
-import buttonImage1 from "../../images/hrmlnew.png"
+
+import LinkedInLogo from "../../images/longButtonIcons/linkedin1.png"
+import GitHubLogo from "../../images/longButtonIcons/github1.png"
+import EmailIcon from "../../images/longButtonIcons/mail.svg"
+import ProjectsIcon from "../../images/longButtonIcons/projects.svg"
+import YouTubeLogo from "../../images/longButtonIcons/youtube1.png"
+import SourceCodeIcon from "../../images/longButtonIcons/code2.svg"
+import LinksIcon from "../../images/longButtonIcons/link.svg"
 
 function HomeContent () {
     return (
         <Body>
-            <FadeParagraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio pulvinar, venenatis orci in, suscipit elit. Phasellus quis finibus ante. Duis nunc lectus, pulvinar quis facilisis vel, maximus eget nibh. Mauris vulputate dolor sit amet nulla blandit, quis pulvinar nunc eleifend. Suspendisse vel bibendum lectus, a fringilla dolor. Suspendisse quam eros, convallis quis pharetra a, commodo non leo. Etiam viverra justo sit amet felis facilisis semper. Proin hendrerit cursus rutrum. Nulla molestie commodo odio in interdum. Vestibulum eu erat eu nibh ullamcorper sagittis. Vivamus pretium leo ac ante vehicula, in hendrerit lorem efficitur. Vivamus pulvinar aliquam tellus, posuere ullamcorper lacus pretium nec. Vestibulum rutrum in felis ac dictum. Mauris ut metus commodo mi vehicula lacinia eu ac odio.
-            </FadeParagraph>
-            <FadeParagraph>
-                Nunc pulvinar fringilla maximus. Morbi sollicitudin ante a nulla pretium malesuada. Morbi pellentesque cursus enim, quis consectetur dolor porttitor sed. Morbi ipsum elit, mollis in diam eu, molestie ullamcorper nulla. Nulla facilisi. Phasellus finibus orci eget magna tempor pretium. Aliquam lacinia risus eu orci facilisis lobortis. Integer purus elit, rhoncus a lacus rutrum, sagittis interdum est. Sed quis dolor molestie, dapibus felis at, suscipit diam. Suspendisse tincidunt lobortis est, sed porttitor magna scelerisque vel.
-            </FadeParagraph>
-            <FadeParagraph>
-                Ut tincidunt, felis id auctor hendrerit, magna sem facilisis nisi, quis vestibulum lorem elit fringilla lacus. Cras orci quam, dictum vitae tortor mollis, consequat consectetur tortor. Sed et libero at lacus ullamcorper condimentum. In quis convallis sapien. Duis neque ligula, cursus vel viverra vel, auctor quis nisi. Vestibulum ultrices at neque id rutrum. Aliquam quis ex quis metus laoreet consequat. Praesent ullamcorper nisi eu lacus vulputate tincidunt. Integer elementum vestibulum velit malesuada commodo. Donec in porta mi. Nulla eu varius ex.
-            </FadeParagraph>
-            <FadeParagraph>
-                Ut bibendum nisi nec odio blandit, id volutpat sapien tempus. Integer ac sodales justo. Integer egestas et sem sed bibendum. Nullam fermentum arcu nec ipsum molestie, pharetra tristique massa porta. Nam eu nisl orci. Proin a ipsum ut eros finibus ultrices. Suspendisse potenti.
-                <br></br><br></br>
-            </FadeParagraph>
+            <br/><br/><br/><hr />
+
             <ChainAnimation>
-                <LongButton img={buttonImage1} color="#300070" href="https://www.google.com/" text={"github placeholder"} alt="button1" />
-                <LongButton img={buttonImage1} color="#300060" href="https://www.youtube.com/@Devolotics/videos" text={"linkedin placceholder"} alt="button2" />
-                <LongButton img={buttonImage1} color="#300050" href={`/projects`} text={"projects page placehulder"} alt="button3" />
-                <LongButton img={buttonImage1} color="#300040" href="https://devolotics.github.io/" text={"credits and source code"} alt="button4" />
+                <h2>
+                    Hello!
+                </h2>
+                <p>
+                    I'm Evan Li, a first-year university student from Scarborough, Ontario, Canada.
+                </p>
+                <p>
+                    This website is for sharing more about my personal life and the stuff I do outside of school and work. For a more formal portfolio, check out my Linkedin and my GitHub profiles. Feel free to email me as well!
+                    <br/><br/>
+                </p>
+                <LongButton img={LinkedInLogo} color="#300090" href="https://www.linkedin.com/in/evan-zc-li/" text={"LinkedIn"} />
+                <LongButton img={GitHubLogo} color="#300080" href="https://github.com/HappyRedMapleLeaf" text={"GitHub"} />
+                <LongButton img={EmailIcon} color="#300070" href="mailto:evan.li@live.ca" text={"Email"} />
+            </ChainAnimation>
+
+            <br/><br/><br/><hr />
+
+            <ChainAnimation>
+                <h2>
+                    A Quick Introduction
+                </h2>
+                <p>
+                    Having just graduated from Dr. Norman Bethune CI, I’m now heading into the University of Waterloo’s computer engineering program. Eventually, I hope to work with low-level software, and I’m especially interested in robotics. Perhaps my robotics addiction will go away soon, but I don’t think it will.
+                </p>
+                <p>
+                    I also love the outdoors (engineering student touching grass? impossible) and I enjoy camping, fishing, snowboarding, and going on nice little walks or bike rides.
+                </p>
+                <p>
+                    I spend a lot of my time working on a variety of personal projects, from woodworking to, well, website development. Check out a detailed timeline of my projects on the Projects page! Most of them aren't very significant or impressive, but I'm happy with them anyways.
+                    <br/><br/>
+                </p>
+                <LongButton img={ProjectsIcon} color="#300060" href={`/projects`} text={"Projects"} />
+            </ChainAnimation>
+
+            <br/><br/><br/><hr />
+
+            <ChainAnimation>
+                <h2>
+                    What's Up With the Username?
+                </h2>
+                <p>
+                    It’s a long story that I don't completely remember, but my fourth grade self needed a new name for my YouTube channel… that had about 2 videos on it. I guess I felt particularly Canadian that day, and I held on to the “Happy Red Maple Leaf” username ever since. I’ve also made some graphics over the years to serve as profile pictures, banners, etc.
+                </p>
+                <p>
+                    Now, I occasionally use the YouTube channel to dump gaming videos or quick showcases on any project, big or small, that I end up finishing.
+                    <br/><br/>
+                </p>
+                <LongButton img={YouTubeLogo} color="#300050" href={`https://www.youtube.com/channel/UCigegT9rDhBZYN9KvSeCE1Q`} text={"YouTube"} />
+            </ChainAnimation>
+
+            <br/><br/><br/><hr />
+
+            <ChainAnimation>
+                <h2>
+                    Credits, Source Code, and More
+                </h2>
+                <p>
+                    All the source code for this website is on my GitHub, as well as some credits and links I found helpful while building the site.
+                    <br/><br/>
+                </p>
+                <LongButton img={SourceCodeIcon} color="#300040" href="https://github.com/HappyRedMapleLeaf/website_prototype" text={"Source Code"} />
+                {/* Link to new repo after i make it */}
+                <LongButton img={LinksIcon} color="#300030" href="https://github.com/HappyRedMapleLeaf/website_prototype/blob/main/src/codelinks.txt" text={"Other Links"} />
+                {/* Change link to readme */}
             </ChainAnimation>
         </Body>
     )

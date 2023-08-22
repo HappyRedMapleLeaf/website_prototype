@@ -6,6 +6,14 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.InnerContent h2 {
+    margin: 0;
+    padding-top: 20px;
+    font-size: 28pt;
+    color: #DDD;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .InnerContent {
     margin: auto;
     width: 90%;

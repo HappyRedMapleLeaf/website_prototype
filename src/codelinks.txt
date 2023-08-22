@@ -4,11 +4,14 @@ https://codepen.io/Chen0682/pen/Rveoom
 https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition
 https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
 
-
 Other Credits:
+Hand (low poly), scribbletoad, CC BY 4.0
 https://sketchfab.com/3d-models/hand-low-poly-d6c802a74a174c8c805deb20186d1877
+Seamless paper tiling texture (used to make blueprint background)
 https://www.tilingtextures.com/tt_blog/24-free-seamless-paper-texture-in-high-resolution
 
+Icons:
+https://fonts.google.com/icons
 
 
 Helpful Links - Canvas Animation:
