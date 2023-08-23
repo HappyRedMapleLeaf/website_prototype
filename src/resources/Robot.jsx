@@ -1,8 +1,5 @@
-const robotString: string = 
+const robotString = 
 `
-# Blender 3.4.1
-# www.blender.org
-o obj_0
 v 0.340857 1.012599 0.323372
 v 0.329419 1.012599 0.323372
 v 0.329419 0.080718 0.375806

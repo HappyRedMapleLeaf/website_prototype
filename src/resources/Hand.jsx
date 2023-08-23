@@ -1,4 +1,4 @@
-const handString: string = 
+const handString = 
 `
 v -0.097188 0.361788 0.197993
 v 0.001131 0.553901 0.204690

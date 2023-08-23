@@ -47,7 +47,7 @@ function HomeContent () {
                     I also love the outdoors (engineering student touching grass? impossible) and I enjoy camping, fishing, snowboarding, and going on nice little walks or bike rides.
                 </p>
                 <p>
-                    I spend a lot of my time working on a variety of personal projects, from woodworking to, well, website development. Check out a detailed timeline of my projects on the Projects page! Most of them aren't very significant or impressive, but I'm happy with them anyways.
+                    I spend a lot of my time working on a variety of personal projects, from woodworking to, well, website development. Check out a detailed timeline of my projects on the Projects page! Most of them aren't very significant or impressive, but I'm happy with them anyways. I also make music or art from time to time, but it's certainly not very good and I just do it for fun.
                     <br/><br/>
                 </p>
                 <LongButton img={ProjectsIcon} color="#300060" href={`/projects`} text={"Projects"} />

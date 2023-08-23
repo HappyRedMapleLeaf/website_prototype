@@ -5,7 +5,7 @@ import { useInView, animated, useTrail } from '@react-spring/web'
 export default function ChainAnimation ({children}: ChildProp) {
     const items = React.Children.toArray(children)
 
-    const [ref, isInView] = useInView({once: false, rootMargin: '10%'})
+    const [ref, isInView] = useInView({once: false, rootMargin: '30% 0% 0% 0%'})
 
     const trail = useTrail(items.length, {
         config: { mass: 2, friction: 30, clamp: true },

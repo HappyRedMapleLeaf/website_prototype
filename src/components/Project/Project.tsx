@@ -18,7 +18,7 @@ export default function Project({image, title, children, month, year}: ProjectPr
         },
     })
 
-    const [refContainer, isInViewContainer] = useInView()
+    const [refContainer, isInViewContainer] = useInView({once: true})
     const [height, setHeight] = useState(200)
 
     const refContent = useRef<HTMLDivElement>(null)

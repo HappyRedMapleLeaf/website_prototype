@@ -3,6 +3,7 @@ https://www.youtube.com/watch?v=ih20l3pJoeU
 https://codepen.io/Chen0682/pen/Rveoom
 https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition
 https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
+https://faq.dailymotion.com/hc/en-us/articles/360022841393-How-to-preserve-the-player-aspect-ratio-on-a-responsive-page
 
 Other Credits:
 Hand (low poly), scribbletoad, CC BY 4.0
