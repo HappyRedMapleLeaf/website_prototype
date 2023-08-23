@@ -23,6 +23,7 @@ export default function Footer() {
             <animated.div className="FooterImageContainer" style={styles2} >
                 <img className="FooterImage2" src={FooterDefault} alt="Hey!" style={{display: "block"}} />
             </animated.div>
+            <p className="FooterText">© 2023 Evan Li</p>
         </div>
     )
 }

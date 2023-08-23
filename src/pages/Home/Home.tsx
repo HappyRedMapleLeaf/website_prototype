@@ -80,9 +80,7 @@ function HomeContent () {
                     <br/><br/>
                 </p>
                 <LongButton img={SourceCodeIcon} color="#300040" href="https://github.com/HappyRedMapleLeaf/website_prototype" text={"Source Code"} />
-                {/* Link to new repo after i make it */}
-                <LongButton img={LinksIcon} color="#300030" href="https://github.com/HappyRedMapleLeaf/website_prototype/blob/main/src/codelinks.txt" text={"Other Links"} />
-                {/* Change link to readme */}
+                <LongButton img={LinksIcon} color="#300030" href="https://github.com/HappyRedMapleLeaf/website_prototype/blob/main/README.md" text={"Other Links"} />
             </ChainAnimation>
         </Body>
     )

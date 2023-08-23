@@ -18,17 +18,17 @@
 }
 
 .Top {
-    height: min(4.5vw, 40px);
-    margin-top: calc(-1.02 * min(4.5vw, 40px));
+    height: min(2.7vw, 24px);
+    margin-top: calc(-1.05 * min(2.7vw, 24px));
 }
 
 .Bottom {
-    height: min(4.5vw, 40px);
-    margin-top: -1%;
+    height: min(2.7vw, 24px);
 }
 
 .Right .Middle {
-    background-color: #ffffff25;
+    background-color: #2e2e2e;
+    background-color: #8d43e2;
 }
 
 .Left .Top {
@@ -41,7 +41,7 @@
 .Left .Middle {
     background-image: url('../../images/timeline.png');
     background-repeat: repeat-y;
-    background-size: 50% 100%;
+    background-size: 30% 100%;
     background-position: center;
     display: flex;
     align-items: center;
@@ -57,7 +57,8 @@
 
 .Left img {
     position: absolute;
-    width: 100%;
+    width: 90%;
+    filter: blur(1px);
 }
 
 .Left p {
@@ -65,6 +66,7 @@
     margin-top: -22px;
     text-align: center;
     font-size: min(2.5vw, 16pt);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .Right .Middle {
@@ -99,7 +101,7 @@
 }
 
 .CoverPanel h1 {
-    color: white;
+    color: #FFFFFF;
     margin: 0;
     padding: 0;
     font-size: min(10.3vw, 90px);
@@ -135,9 +137,10 @@
 }
 
 .Content h2 {
+    color: #9de0e2;
     margin: 0;
     padding: 0;
-    font-size: min(5vw, 36px);
+    font-size: min(5.5vw, 40px);
     line-height: normal;
 }
 

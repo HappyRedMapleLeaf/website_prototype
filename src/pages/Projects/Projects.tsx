@@ -43,7 +43,7 @@ function ProjectsContent() {
                     These are some side projects I've completed over the years.
                     <br /><br />
                 </p>
-                <LongButton img={HomeIcon} color="#300070" href={`/`} text={"Back to Homepage"} />
+                <LongButton img={HomeIcon} color="#300080" href={`/`} text={"Back to Homepage"} />
             </ChainAnimation>
             <br />
             <br />
@@ -89,7 +89,7 @@ function ProjectsContent() {
                 <br />
                 <p>In my second year, after over 10,000 combined hours from our team, we became one of two Ontario teams to qualify to the World Championships in Houston, Texas. I’d say that this is by far my proudest achievement to date. Devolotics forever! Some pictures are below.</p>
                 <br />
-                <LongButton img={devlogo} color="#502290" href={`https://devolotics.github.io/`} text={"Our Website"} />
+                <LongButton img={devlogo} color="#300070" href={`https://devolotics.github.io/`} text={"Our Website"} />
                 <img width="48%" style={{marginRight: "4%"}} src={dev1} alt="Our Robot" />
                 <img width="48%" src={dev2} alt="When we discovered that we qualified!" />
                 <br />
@@ -102,7 +102,7 @@ function ProjectsContent() {
                 <br />
                 <p>Working with teachers, volunteers, other organizations, and even the government, I think we’ve significantly changed a few lives through our work, just like robotics has changed mine.</p>
                 <br />
-                <LongButton img={instalogo} color="#502290" href={`https://www.instagram.com/scarborough.stem.alliance/`} text={"SSA Instagram"} />
+                <LongButton img={instalogo} color="#300060" href={`https://www.instagram.com/scarborough.stem.alliance/`} text={"SSA Instagram"} />
                 <img width="48%" style={{marginRight: "4%"}} src={ssa1} alt="Workshop at Forest Manor Public School" />
                 <img width="48%" src={ssa2} alt="Workshop at Toronto Public Library" />
                 <br />
